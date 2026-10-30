@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback | Sai Bhavani Yedla</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
+</head>
+
+<body>
+  <div class="cursor-glow"></div>
+
+  <header class="site-header">
+    <a href="index.html" class="logo bubble-logo" aria-label="Sai Bhavani Yedla home">SBY</a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#certifications">Certifications</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#education">Education</a>
+      <a href="contact.html">Feedback</a>
+    </nav>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+  </header>
+
+  <main>
+    <section class="feedback-hero section">
+      <div class="section-title reveal">
+        <p>Feedback Page</p>
+        <h2>Contact me or share your portfolio feedback</h2>
+      </div>
+
+      <div class="feedback-layout">
+        <form
+       class="feedback-form reveal"
+       action="https://formsubmit.co/saibhavaniyedla35@gmail.com"
+       method="POST"
+      >
+          <!-- FormSubmit settings -->
+          <input type="hidden" name="_subject" value="New Portfolio Feedback Message">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://sai-bhavani-portfolio.onrender.com/thankyou.html">
+
+          <!-- Spam protection -->
+          <input type="text" name="_honey" style="display: none;">
+
+          <label>
+            Your Name
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+              required
+            />
+          </label>
+
+          <label>
+            Your Email
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </label>
+
+          <label>
+            Message Type
+            <select name="message_type" required>
+              <option value="">Choose one</option>
+              <option value="Portfolio feedback">Portfolio feedback</option>
+              <option value="Internship opportunity">Internship opportunity</option>
+              <option value="Project collaboration">Project collaboration</option>
+              <option value="Learning suggestion">Learning suggestion</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+
+          <label>
+            Message
+            <textarea
+              name="message"
+              rows="7"
+              placeholder="Write your message here"
+              required
+            ></textarea>
+          </label>
+
+          <button class="btn primary form-button" type="submit">
+            Send Message
+          </button>
+        </form>
+
+        <aside class="feedback-card reveal">
+          <div class="profile-media-row small-media">
+            <div class="profile-avatar sby-avatar small-avatar">SBY</div>
+          </div>
+
+          <h3>Sai Bhavani Yedla</h3>
+
+          <p>
+            I am open to internship opportunities, frontend projects, AI/ML learning,
+            collaborations, and helpful feedback on my portfolio.
+          </p>
+
+          <div class="contact-links vertical-links">
+            <a href="mailto:saibhavaniyedla35@gmail.com">
+              saibhavaniyedla35@gmail.com
+            </a>
+
+            <a href="tel:+917013598093">
+              +91 7013598093
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/sai-bhavani-yedla"
+              target="_blank"
+              rel="noopener"
+            >
+              LinkedIn
+            </a>
+
+            <a
+              href="https://github.com/saibhavaniyedla"
+              target="_blank"
+              rel="noopener"
+            >
+              GitHub
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Sai Bhavani Yedla | Portfolio</p>
+
+    <div class="footer-links">
+      <a
+        href="https://www.linkedin.com/in/sai-bhavani-yedla"
+        target="_blank"
+        rel="noopener"
+      >
+        LinkedIn
+      </a>
+
+      <a
+        href="https://github.com/saibhavaniyedla"
+        target="_blank"
+        rel="noopener"
+      >
+        GitHub
+      </a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

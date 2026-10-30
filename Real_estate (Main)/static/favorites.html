@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Favourites | Nestora</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/"><span class="brand-mark">N</span><span>Nestora</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+    <nav class="main-nav" id="mainNav">
+      <a href="/">Properties</a>
+      <a class="active" href="/favorites">Favourites <span class="nav-count" id="favCount">0</span></a>
+      <a href="/admin">Admin Panel</a>
+    </nav>
+  </header>
+
+  <main class="page-main">
+    <section class="page-hero compact">
+      <span class="eyebrow">Saved properties</span>
+      <h1>Your favourite places</h1>
+      <p>Keep the properties you love in one convenient shortlist.</p>
+    </section>
+    <section class="section">
+      <div class="section-heading">
+        <div><span class="eyebrow dark">My shortlist</span><h2>Favourites</h2></div>
+        <p id="resultCount">Loading...</p>
+      </div>
+      <div class="property-grid" id="propertyGrid"></div>
+      <div class="empty-state hidden" id="emptyState">
+        <div class="empty-icon">♡</div>
+        <h3>No favourites yet</h3>
+        <p>Save properties from the listings page to view them here.</p>
+        <a href="/" class="btn btn-primary">Browse Properties</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="enquiryModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card">
+      <button class="modal-close" data-close-modal aria-label="Close">×</button>
+      <span class="eyebrow dark">Contact owner</span>
+      <h2 id="enquiryPropertyTitle">Property enquiry</h2>
+      <form id="enquiryForm">
+        <input type="hidden" id="enquiryPropertyId" />
+        <div class="form-grid two">
+          <label>Your name<input id="enquiryName" required minlength="2" /></label>
+          <label>Email<input id="enquiryEmail" type="email" required /></label>
+        </div>
+        <label>Phone number<input id="enquiryPhone" required minlength="7" /></label>
+        <label>Message<textarea id="enquiryMessage" rows="4" required>Hi, I am interested in this property. Please share more details.</textarea></label>
+        <button class="btn btn-primary btn-block" type="submit">Send Enquiry</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <footer class="site-footer"><div><strong>Nestora</strong><span>Real Estate Portal</span></div><p>Built for the 3Skill final project submission.</p></footer>
+
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/favorites.js"></script>
+</body>
+</html>

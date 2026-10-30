@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nestora Real Estate Portal - find properties for sale and rent." />
+  <title>Nestora | Real Estate Portal</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <span class="brand-mark">N</span>
+      <span>Nestora</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+    <nav class="main-nav" id="mainNav">
+      <a class="active" href="/">Properties</a>
+      <a href="/favorites">Favourites <span class="nav-count" id="favCount">0</span></a>
+      <a href="/admin">Admin Panel</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="eyebrow">Trusted property discovery</span>
+        <h1>Find a place that feels like <em>home.</em></h1>
+        <p>Explore verified properties for sale and rent across Hyderabad.</p>
+        <form class="hero-search" id="heroSearchForm">
+          <div class="input-with-icon">
+            <span>⌕</span>
+            <input id="heroSearch" type="search" placeholder="Search by property, locality, or city" />
+          </div>
+          <button class="btn btn-primary" type="submit">Search Properties</button>
+        </form>
+        <div class="hero-stats">
+          <div><strong>100+</strong><span>Verified listings</span></div>
+          <div><strong>20+</strong><span>Popular localities</span></div>
+          <div><strong>24/7</strong><span>Owner enquiries</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section listings-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow dark">Discover properties</span>
+          <h2>Properties made for your lifestyle</h2>
+        </div>
+        <p id="resultCount">Loading properties...</p>
+      </div>
+
+      <div class="listings-layout">
+        <aside class="filters-card">
+          <div class="filters-title-row">
+            <h3>Filters</h3>
+            <button class="text-button" id="clearFilters">Clear all</button>
+          </div>
+
+          <label>
+            Search
+            <input id="searchFilter" type="search" placeholder="Property or location" />
+          </label>
+
+          <div class="form-grid two">
+            <label>
+              Purpose
+              <select id="purposeFilter">
+                <option value="">Any</option>
+                <option>Sale</option>
+                <option>Rent</option>
+              </select>
+            </label>
+            <label>
+              Type
+              <select id="typeFilter">
+                <option value="">Any</option>
+                <option>Apartment</option>
+                <option>Villa</option>
+                <option>Studio</option>
+                <option>Independent House</option>
+                <option>Commercial</option>
+                <option>Plot</option>
+                <option>Co-living</option>
+              </select>
+            </label>
+          </div>
+
+          <label>
+            Locality
+            <input id="localityFilter" type="text" placeholder="e.g. Gachibowli" />
+          </label>
+
+          <div class="form-grid two">
+            <label>
+              Min price
+              <input id="minPriceFilter" type="number" min="0" placeholder="₹ Min" />
+            </label>
+            <label>
+              Max price
+              <input id="maxPriceFilter" type="number" min="0" placeholder="₹ Max" />
+            </label>
+          </div>
+
+          <div class="form-grid two">
+            <label>
+              Bedrooms
+              <select id="bedroomFilter">
+                <option value="">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+              </select>
+            </label>
+            <label>
+              Furnishing
+              <select id="furnishingFilter">
+                <option value="">Any</option>
+                <option>Fully Furnished</option>
+                <option>Semi Furnished</option>
+                <option>Unfurnished</option>
+              </select>
+            </label>
+          </div>
+
+          <button class="btn btn-primary btn-block" id="applyFilters" type="button">Apply Filters</button>
+        </aside>
+
+        <div class="properties-panel">
+          <div class="toolbar">
+            <button class="filter-mobile-button" id="filterMobileButton">☷ Filters</button>
+            <label class="sort-label">
+              Sort by
+              <select id="sortFilter">
+                <option value="newest">Newest</option>
+                <option value="price_asc">Price: Low to High</option>
+                <option value="price_desc">Price: High to Low</option>
+                <option value="area_desc">Largest Area</option>
+              </select>
+            </label>
+          </div>
+          <div class="property-grid" id="propertyGrid"></div>
+          <div class="empty-state hidden" id="emptyState">
+            <div class="empty-icon">⌂</div>
+            <h3>No matching properties</h3>
+            <p>Try changing your filters or clearing the search.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div>
+        <span class="eyebrow">List with confidence</span>
+        <h2>Manage every listing from one admin panel.</h2>
+        <p>Add properties, update availability, and follow owner enquiries without leaving the portal.</p>
+      </div>
+      <a class="btn btn-light" href="/admin">Open Admin Panel</a>
+    </section>
+  </main>
+
+  <div class="modal" id="enquiryModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card">
+      <button class="modal-close" data-close-modal aria-label="Close">×</button>
+      <span class="eyebrow dark">Contact owner</span>
+      <h2 id="enquiryPropertyTitle">Property enquiry</h2>
+      <p class="muted">Share your details and the owner will contact you.</p>
+      <form id="enquiryForm">
+        <input type="hidden" id="enquiryPropertyId" />
+        <div class="form-grid two">
+          <label>Your name<input id="enquiryName" required minlength="2" /></label>
+          <label>Email<input id="enquiryEmail" type="email" required /></label>
+        </div>
+        <label>Phone number<input id="enquiryPhone" required minlength="7" /></label>
+        <label>Message<textarea id="enquiryMessage" rows="4" required>Hi, I am interested in this property. Please share more details.</textarea></label>
+        <button class="btn btn-primary btn-block" type="submit">Send Enquiry</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <footer class="site-footer">
+    <div><strong>Nestora</strong><span>Real Estate Portal</span></div>
+    <p>Built for the 3Skill final project submission.</p>
+  </footer>
+
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

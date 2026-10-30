@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | Nestora</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body class="admin-body">
+  <div class="admin-login-page" id="adminLoginPage">
+    <div class="admin-login-visual">
+      <a class="brand brand-light" href="/"><span class="brand-mark">N</span><span>Nestora</span></a>
+      <div>
+        <span class="eyebrow">Property administration</span>
+        <h1>Manage listings, enquiries, and availability.</h1>
+        <p>A focused dashboard for the complete real-estate workflow.</p>
+      </div>
+    </div>
+    <div class="admin-login-panel">
+      <form class="login-card" id="adminLoginForm">
+        <span class="eyebrow dark">Secure access</span>
+        <h2>Admin Login</h2>
+        <p class="muted">Use the demonstration credentials below.</p>
+        <div class="demo-credentials">
+          <span>Email: <strong>admin@nestora.com</strong></span>
+          <span>Password: <strong>Admin@123</strong></span>
+        </div>
+        <label>Email<input id="adminEmail" type="email" value="admin@nestora.com" required /></label>
+        <label>Password<input id="adminPassword" type="password" value="Admin@123" required /></label>
+        <button class="btn btn-primary btn-block" type="submit">Login to Dashboard</button>
+        <a class="back-link" href="/">← Back to website</a>
+      </form>
+    </div>
+  </div>
+
+  <div class="admin-app hidden" id="adminApp">
+    <aside class="admin-sidebar" id="adminSidebar">
+      <a class="brand brand-light" href="/"><span class="brand-mark">N</span><span>Nestora</span></a>
+      <nav class="admin-nav">
+        <button class="active" data-section="dashboardSection">▦ <span>Dashboard</span></button>
+        <button data-section="propertiesSection">⌂ <span>Properties</span></button>
+        <button data-section="enquiriesSection">✉ <span>Enquiries</span></button>
+      </nav>
+      <div class="admin-sidebar-footer">
+        <a href="/">View Website ↗</a>
+        <button id="logoutButton">Log out</button>
+      </div>
+    </aside>
+
+    <div class="admin-content-wrap">
+      <header class="admin-topbar">
+        <button class="admin-menu-button" id="adminMenuButton">☰</button>
+        <div><span class="muted small">Admin workspace</span><h2 id="adminPageTitle">Dashboard</h2></div>
+        <div class="admin-user"><span>A</span><div><strong>Administrator</strong><small>admin@nestora.com</small></div></div>
+      </header>
+
+      <main class="admin-main">
+        <section class="admin-section" id="dashboardSection">
+          <div class="admin-section-heading">
+            <div><span class="eyebrow dark">Overview</span><h1>Dashboard</h1></div>
+            <button class="btn btn-primary" id="dashboardAddProperty">+ Add Property</button>
+          </div>
+          <div class="stat-grid" id="statGrid">
+            <article class="stat-card"><span>Total properties</span><strong id="statProperties">—</strong><small>All listings</small></article>
+            <article class="stat-card"><span>Available</span><strong id="statAvailable">—</strong><small>Ready to enquire</small></article>
+            <article class="stat-card"><span>Favourites</span><strong id="statFavourites">—</strong><small>User saves</small></article>
+            <article class="stat-card"><span>New enquiries</span><strong id="statEnquiries">—</strong><small>Require follow-up</small></article>
+          </div>
+          <div class="dashboard-grid">
+            <article class="admin-card">
+              <div class="card-heading"><div><h3>Recent Properties</h3><p>Latest listings added to the portal</p></div><button class="text-button" data-go="propertiesSection">View all</button></div>
+              <div id="recentProperties"></div>
+            </article>
+            <article class="admin-card">
+              <div class="card-heading"><div><h3>Recent Enquiries</h3><p>Latest contact requests</p></div><button class="text-button" data-go="enquiriesSection">View all</button></div>
+              <div id="recentEnquiries"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="admin-section hidden" id="propertiesSection">
+          <div class="admin-section-heading">
+            <div><span class="eyebrow dark">Inventory</span><h1>Properties</h1><p>Manage every property listing.</p></div>
+            <button class="btn btn-primary" id="addPropertyButton">+ Add Property</button>
+          </div>
+          <div class="admin-card table-card">
+            <div class="table-toolbar">
+              <input id="adminPropertySearch" type="search" placeholder="Search properties..." />
+              <select id="adminStatusFilter"><option value="">All statuses</option><option>Available</option><option>Sold</option><option>Rented</option></select>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Property</th><th>Type</th><th>Purpose</th><th>Price</th><th>Status</th><th>Actions</th></tr></thead>
+                <tbody id="propertiesTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="admin-section hidden" id="enquiriesSection">
+          <div class="admin-section-heading">
+            <div><span class="eyebrow dark">Communication</span><h1>Enquiries</h1><p>Track and update potential buyer or tenant enquiries.</p></div>
+          </div>
+          <div class="admin-card table-card">
+            <div class="table-toolbar"><input id="enquirySearch" type="search" placeholder="Search enquiries..." /><select id="enquiryStatusFilter"><option value="">All statuses</option><option>New</option><option>Contacted</option><option>Closed</option></select></div>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Person</th><th>Property</th><th>Contact</th><th>Message</th><th>Status</th></tr></thead>
+                <tbody id="enquiriesTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="modal" id="propertyModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-property-modal></div>
+    <div class="modal-card modal-large">
+      <button class="modal-close" data-close-property-modal aria-label="Close">×</button>
+      <span class="eyebrow dark">Listing details</span>
+      <h2 id="propertyModalTitle">Add Property</h2>
+      <form id="propertyForm">
+        <input type="hidden" id="propertyId" />
+        <div class="form-grid two">
+          <label>Property title<input id="propertyTitle" required minlength="3" /></label>
+          <label>Property type<select id="propertyType" required><option>Apartment</option><option>Villa</option><option>Studio</option><option>Independent House</option><option>Commercial</option><option>Plot</option><option>Co-living</option></select></label>
+        </div>
+        <label>Description<textarea id="propertyDescription" rows="3" required minlength="10"></textarea></label>
+        <div class="form-grid three">
+          <label>Purpose<select id="propertyPurpose"><option>Sale</option><option>Rent</option></select></label>
+          <label>City<input id="propertyCity" value="Hyderabad" required /></label>
+          <label>Locality<input id="propertyLocality" required /></label>
+        </div>
+        <label>Full address<input id="propertyAddress" required /></label>
+        <div class="form-grid four">
+          <label>Price (₹)<input id="propertyPrice" type="number" min="1" required /></label>
+          <label>Area (sq.ft.)<input id="propertyArea" type="number" min="1" required /></label>
+          <label>Bedrooms<input id="propertyBedrooms" type="number" min="0" value="2" required /></label>
+          <label>Bathrooms<input id="propertyBathrooms" type="number" min="0" value="2" required /></label>
+        </div>
+        <div class="form-grid three">
+          <label>Furnishing<select id="propertyFurnishing"><option>Fully Furnished</option><option>Semi Furnished</option><option>Unfurnished</option><option>Not Applicable</option></select></label>
+          <label>Parking spaces<input id="propertyParking" type="number" min="0" value="1" required /></label>
+          <label>Status<select id="propertyStatus"><option>Available</option><option>Sold</option><option>Rented</option></select></label>
+        </div>
+        <div class="form-grid three">
+          <label>Owner name<input id="ownerName" required /></label>
+          <label>Owner email<input id="ownerEmail" type="email" required /></label>
+          <label>Owner phone<input id="ownerPhone" required /></label>
+        </div>
+        <label>Image path or URL<input id="propertyImage" value="/static/images/property1.svg" required /></label>
+        <label class="checkbox-label"><input id="propertyFeatured" type="checkbox" /> Mark as featured property</label>
+        <button class="btn btn-primary btn-block" type="submit">Save Property</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/admin.js"></script>
+</body>
+</html>

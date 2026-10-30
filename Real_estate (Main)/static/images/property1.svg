@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <rect width="900" height="600" fill="#d9e7e1"/>
+  <circle cx="735" cy="105" r="56" fill="#f0b76c" opacity=".8"/>
+  <path d="M0 470 Q180 400 355 470 T700 450 T900 460 V600 H0Z" fill="#254a3c" opacity=".18"/>
+  <g transform="translate(150 115)">
+    <path d="M50 210 L300 25 L550 210 V465 H50Z" fill="#f8f5ed" stroke="#254a3c" stroke-width="14"/>
+    <path d="M10 225 L300 0 L590 225" fill="none" stroke="#254a3c" stroke-width="28" stroke-linejoin="round"/>
+    <rect x="225" y="290" width="150" height="175" rx="4" fill="#f0b76c"/>
+    <rect x="92" y="245" width="105" height="95" fill="#254a3c" opacity=".78"/>
+    <rect x="403" y="245" width="105" height="95" fill="#254a3c" opacity=".78"/>
+    <path d="M300 25V465" stroke="#254a3c" stroke-width="7" opacity=".13"/>
+  </g>
+  <g fill="#254a3c"><rect x="95" y="435" width="16" height="95"/><circle cx="103" cy="415" r="44"/><rect x="785" y="420" width="16" height="110"/><circle cx="793" cy="396" r="51"/></g>
+  <rect y="530" width="900" height="70" fill="#254a3c" opacity=".32"/>
+</svg>
